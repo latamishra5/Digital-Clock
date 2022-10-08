@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS - Clock</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .clock {
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(20deg, rgba(0, 255, 0, 0.705), rgba(153, 205, 50, 0.602));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .date {
+            font-size: 3em;
+        }
+
+        .time {
+            font-size: 5em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clock">
+        <div class="date">Date</div>
+        <div class="time">Time</div>
+    </div>
+    <script>
+        setInterval(() => {
+            let now = new Date;
+            let year = now.getFullYear();
+            let month = now.getMonth();
+            let day = now.getDate();
+            let hour = now.getHours();
+            let min = now.getMinutes();
+            let sec = now.getSeconds();
+            let meridian = "";
+            if(hour >= 12) {
+                meridian = "PM"
+            }
+            else if(hour > 12) {
+                hour = hour - 12;
+                meridian = "PM"
+            }
+            else {
+                meridian = "AM"
+            }
+            let dateDiv = document.querySelector(".date");
+            let timeDiv = document.querySelector(".time");
+            dateDiv.innerHTML = year + "/" + (month+1) + "/" + day;
+            timeDiv.innerHTML = hour + ":" + min + ":" + sec + " " + meridian;
+            // div.innerHTML = "Date : " + year + "/" + month + "/" + day + " Time : " + hour + ":" + min + ":" + sec + " " + meridian;
+            // console.log("Date : " + year + "/" + month + "/" + day + " Time : " + hour + ":" + min + ":" + sec);
+        }, 1)
+    </script>
+</body>
+
+</html>
